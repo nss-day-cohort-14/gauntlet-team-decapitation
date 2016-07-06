@@ -1,7 +1,6 @@
 "use strict";
 
-let Classes = require("./races")
-let Equipment = require("./classes")
+let Equipment = require("./classes");
 
 function ExtraWeapon () {
   this.attack += Math.floor(Math.random() * (15 - 10) + 10);
