@@ -1,7 +1,7 @@
 "use strict";
 
 function Player() {
-	this.names = "bgeirbnrjgn";
+	this.names = null;
 	this.health = null;
 	this.attack = null;
 	this.race = null;
