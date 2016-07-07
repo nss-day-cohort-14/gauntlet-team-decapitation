@@ -55,6 +55,7 @@ function Fire () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
 	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
 	this.class = "Fire";
+	this.name = "Fire Dragon";
 }
 // Place holder for event listner
 Fire.prototype = new Classes.Dragon();
@@ -63,6 +64,7 @@ function Ice () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
 	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
 	this.class = "Ice";
+	this.name = "Ice Dragon";
 }
 // Place holder for event listner
 Ice.prototype = new Classes.Dragon();

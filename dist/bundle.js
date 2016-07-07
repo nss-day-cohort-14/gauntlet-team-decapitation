@@ -8,6 +8,7 @@ let ClassesModule = require("./classes")
 let EquipmentModule = require("./equipment")
 let DomManip = require("./domManip")
 let $ = require("jquery")
+let Templates = require("./template")
 
 $(document).ready(function(){
     $('.raceBtn').prop('disabled',true);
@@ -17,7 +18,6 @@ $(document).ready(function(){
 }); 
 
 DomManip.disableBtns();
-// DomManip.enterName();
 DomManip.raceClick();
 DomManip.warriorEquipmentClick();
 DomManip.mageEquipmentClick();
@@ -26,15 +26,19 @@ DomManip.wizardEquipmentClick();
 
 var NewHero;
 var NewEnemy;
+var resetHealth;
+var counter = 1;
 
 function buildExtraWeapon () {
  	$('.extraWeaponBtn').click(function () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ExtraWeapon();
  		NewHero.name = inputName;
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
  }
  buildExtraWeapon();
@@ -44,9 +48,11 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.Shield();
  		NewHero.name = inputName;
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
  }
  buildShield();
@@ -56,9 +62,11 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.IceSpell();
  		NewHero.name = inputName;
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
  }
  buildIceSpear();
@@ -68,9 +76,11 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ArmoredRobe();
  		NewHero.name = inputName;
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
  }
  buildRobes();
@@ -80,9 +90,11 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.LongBow();
  		NewHero.name = inputName;
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
  }
  buildLongBow();
@@ -92,9 +104,11 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.LeatherArmor();
  		NewHero.name = inputName;
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
  }
  buildLeatherArmor();
@@ -104,9 +118,11 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.FireSpell();
  		NewHero.name = inputName;
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
  }
  buildFireBall();
@@ -116,10 +132,11 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ProtectionSpell();
  		NewHero.name = inputName;
-
+ 		resetHealth = NewHero.health;
+ 		addFightButton();
  		buildEnemy ();
-		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
-		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+		Templates.heroTemplate(NewHero);
+		Templates.enemyTemplate(NewEnemy);
  	})
 
  }
@@ -135,32 +152,43 @@ function addFightButton () {
 function buildEnemy () {
   var determineEnemy;
   determineEnemy=Math.floor(Math.random() * (4) + 1);
-  addFightButton();
-  if (determineEnemy === 2) {
-    NewEnemy = new EquipmentModule.PotionOfProtection();
+	if (counter === 3) {
+		NewEnemy = new ClassesModule.Ice();
+	}  
+  	else if (determineEnemy === 2) {
+    	NewEnemy = new EquipmentModule.PotionOfProtection();
+    	counter ++;
   } else if (determineEnemy === 1) {
-    NewEnemy = new EquipmentModule.CloakOfWisdom();
+    	NewEnemy = new EquipmentModule.CloakOfWisdom();
+    	counter ++;
   } else if (determineEnemy === 3) {
-    NewEnemy = new EquipmentModule.PlateArmor();
+    	NewEnemy = new EquipmentModule.PlateArmor();
+    	counter ++;
   } else {
-    NewEnemy = new EquipmentModule.DoubleDagger();
+    	NewEnemy = new EquipmentModule.DoubleDagger();
+    	counter ++;
   }
+  console.log(counter);
 }
 
+
 function fight () {
-    // let enemyHealth = NewEnemy.health;
-    // let enemyAttack = NewEnemy.attack;     
-    // let heroHealth = NewHero.health;
-    // let heroAttack = NewHero.attack;
     NewEnemy.health = NewEnemy.health - NewHero.attack;
+    Templates.enemyTemplate(NewEnemy);
     if (NewEnemy.health < 1) {
-      console.log("Enemy is dead");
-      // insert end battle function here
+      alert("Enemy is dead");
+      alert("Next Wave");
+      NewHero.health = resetHealth;
+      Templates.heroTemplate(NewHero);
+      console.log(NewHero.health);
+      console.log(NewEnemy.name);
+      buildEnemy();
+      Templates.enemyTemplate(NewEnemy);
     } else {
       NewHero.health = NewHero.health - NewEnemy.attack;
+      Templates.heroTemplate(NewHero);
       if (NewHero.health < 1) {
-        console.log("Hero is dead");
-        // insert end battle function here
+        alert("Hero is Dead");
       } else { 
         console.log("heroHealth", NewHero.health);
         console.log("enemyHealth", NewEnemy.health);
@@ -177,7 +205,7 @@ function fight () {
 
 
 
-},{"./classes":2,"./domManip":3,"./equipment":4,"./player":5,"./races":6,"jquery":7}],2:[function(require,module,exports){
+},{"./classes":2,"./domManip":3,"./equipment":4,"./player":5,"./races":6,"./template":7,"jquery":8}],2:[function(require,module,exports){
 "use strict";
 
 let Classes = require("./races");
@@ -235,6 +263,7 @@ function Fire () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
 	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
 	this.class = "Fire";
+	this.name = "Fire Dragon";
 }
 // Place holder for event listner
 Fire.prototype = new Classes.Dragon();
@@ -243,6 +272,7 @@ function Ice () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
 	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
 	this.class = "Ice";
+	this.name = "Ice Dragon";
 }
 // Place holder for event listner
 Ice.prototype = new Classes.Dragon();
@@ -308,7 +338,7 @@ module.exports = {
 	wizardEquipmentClick,
 };
 
-},{"./equipment":4,"jquery":7}],4:[function(require,module,exports){
+},{"./equipment":4,"jquery":8}],4:[function(require,module,exports){
 "use strict";
 
 let Equipment = require("./classes");
@@ -483,6 +513,20 @@ Dragon.prototype = new Races.Enemy();
 
 module.exports = {Human, Elf, Orc, Dragon};
 },{"./player":5}],7:[function(require,module,exports){
+"use strict"
+
+let $ = require("jquery")
+
+function heroTemplate (hero) {
+	$('.outputEl').html(`<h3><span class="heroName">${hero.name}</span> Will kick your ass with a ${hero.equipment} while having <h1>${hero.attack}</h1><h3> as attack and </h3><h1>${hero.health}</h1><h3> as health</h3> `);
+}
+
+function enemyTemplate (enemy) {
+	$('.outputElEnemy').html(`<h3><span class="enemyName">${enemy.name}</span> Will kick your ass with a ${enemy.equipment} while having <h1>${enemy.attack}</h1><h3> as attack and </h3><h1>${enemy.health}</h1><h3> as health</h3> `);
+}
+
+module.exports = {heroTemplate, enemyTemplate};
+},{"jquery":8}],8:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
