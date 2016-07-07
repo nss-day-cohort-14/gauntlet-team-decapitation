@@ -1,7 +1,6 @@
-	"use strict"
+"use strict";
 
-let Classes = require("./races")
-let Races = require("./player")
+let Classes = require("./races");
 
 
 function Warrior () {

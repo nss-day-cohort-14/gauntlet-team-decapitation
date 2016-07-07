@@ -1,6 +1,6 @@
 "use strict";
 
-let Races = require("./player")
+let Races = require("./player");
 
 function Human() {
 	this.race = "Human";
@@ -17,15 +17,15 @@ function Elf() {
 Elf.prototype = new Races.Hero();
 
 function Orc() {
-	this.race = "Orc"
+	this.race = "Orc";
 }
 
 Orc.prototype = new Races.Enemy();
 
 function Dragon() {
-	this.race = "Dragon"
+	this.race = "Dragon";
 }
 
 Dragon.prototype = new Races.Enemy();
 
-module.exports = {Human, Elf, Orc, Dragon}
+module.exports = {Human, Elf, Orc, Dragon};

@@ -16,6 +16,13 @@ function Shield () {
 // Place holder for event listner
 Shield.prototype = new Equipment.Warrior();
 
+function Sheild () {
+  this.health += Math.floor(Math.random() * (10 - 5) + 5);
+  this.equipment = "Sheild";
+}
+// Place holder for event listner
+Sheild.prototype = new Equipment.Warrior();
+
 function IceSpell () {
   this.attack += Math.floor(Math.random() * (10 - 5) + 5);
   this.equipment = "Ice Spell";
@@ -91,6 +98,7 @@ CloakOfWisdom.prototype = new Equipment.Shaman();
 module.exports = {
   ExtraWeapon,
   Shield,
+  Sheild,
   IceSpell,
   ArmoredRobe,
   LongBow, 
@@ -102,3 +110,4 @@ module.exports = {
   PotionOfProtection,
   CloakOfWisdom
 };
+

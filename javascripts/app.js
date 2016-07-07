@@ -1,5 +1,6 @@
 "use strict";
 
+
 let PlayerModule = require("./player")
 let RaceModule = require("./races")
 let ClassesModule = require("./classes")
@@ -10,7 +11,7 @@ let $ = require("jquery")
 $(document).ready(function(){
     $('.raceBtn').prop('disabled',true);
     $('#name').keyup(function(){
-        $('.raceBtn').prop('disabled', this.value == "" ? true : false);     
+        $('.raceBtn').prop('disabled', this.value === "" ? true : false);     
     })
 }); 
 
