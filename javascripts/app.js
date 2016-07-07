@@ -124,11 +124,16 @@ function buildShield () {
 
 function buildEnemy () {
 	var determineEnemy;
-	determineEnemy=Math.floor(Math.random() * (1-0) + 1);
+	determineEnemy=Math.floor(Math.random() * (4) + 1);
+	console.log(determineEnemy);
 	if (determineEnemy === 2) {
 		NewEnemy = new EquipmentModule.PotionOfProtection();
-	} else {
+	} else if (determineEnemy === 1) {
 		NewEnemy = new EquipmentModule.CloakOfWisdom();
+	} else if (determineEnemy === 3) {
+		NewEnemy = new EquipmentModule.PlateArmor();
+	} else {
+		NewEnemy = new EquipmentModule.DoubleDagger();
 	}
 
 }
