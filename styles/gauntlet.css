@@ -13,3 +13,54 @@
 .classesGroup  button{
   width: 25%;
 }
+
+.hidebtn {
+	display: none;
+}
+
+.page-header {
+	background-color: red;
+}
+
+.heroName {
+	color: blue;
+}
+
+.enemyName {
+	color: red;
+}
+
+.humanBtn {
+	background-color: blue;
+}
+
+.elfBtn {
+	background-color: green;
+}
+
+.warriorBtn {
+	background-color: darkred;
+}
+
+.mageBtn {
+	background-color: lightblue;
+}
+
+.archerBtn {
+	background-color: BlanchedAlmond;
+}
+
+.wizardBtn {
+	background-color: firebrick;
+}
+
+.output h1, h2, h3 {
+	display: inline;
+}
+
+
+
+
+
+
+

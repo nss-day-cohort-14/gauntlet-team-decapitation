@@ -33,8 +33,8 @@ function buildExtraWeapon () {
  		NewHero = new EquipmentModule.ExtraWeapon();
  		NewHero.name = inputName;
  		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
  	})
  }
  buildExtraWeapon();
@@ -45,8 +45,8 @@ function buildShield () {
  		NewHero = new EquipmentModule.Shield();
  		NewHero.name = inputName;
  		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
  	})
  }
  buildShield();
@@ -57,8 +57,8 @@ function buildShield () {
  		NewHero = new EquipmentModule.IceSpell();
  		NewHero.name = inputName;
  		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
  	})
  }
  buildIceSpear();
@@ -69,8 +69,8 @@ function buildShield () {
  		NewHero = new EquipmentModule.ArmoredRobe();
  		NewHero.name = inputName;
  		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
  	})
  }
  buildRobes();
@@ -81,8 +81,8 @@ function buildShield () {
  		NewHero = new EquipmentModule.LongBow();
  		NewHero.name = inputName;
  		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
  	})
  }
  buildLongBow();
@@ -93,8 +93,8 @@ function buildShield () {
  		NewHero = new EquipmentModule.LeatherArmor();
  		NewHero.name = inputName;
  		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
  	})
  }
  buildLeatherArmor();
@@ -105,8 +105,8 @@ function buildShield () {
  		NewHero = new EquipmentModule.FireSpell();
  		NewHero.name = inputName;
  		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
  	})
  }
  buildFireBall();
@@ -116,10 +116,12 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ProtectionSpell();
  		NewHero.name = inputName;
-    buildEnemy ();
-    $('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-    $('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
-  })
+
+ 		buildEnemy ();
+		$('.outputEl').html(`<h3><span class="heroName">${NewHero.name}</span> Will kick your ass with a ${NewHero.equipment} while having <h1>${NewHero.attack}</h1><h3> as attack and </h3><h1>${NewHero.health}</h1><h3> as health</h3> `);
+		$('.outputElEnemy').html(`<h3><span class="enemyName">${NewEnemy.name}</span> Will kick your ass with a ${NewEnemy.equipment} while having <h1>${NewEnemy.attack}</h1><h3> as attack and </h3><h1>${NewEnemy.health}</h1><h3> as health</h3> `);
+ 	})
+
  }
  buildProtectionSpell();
 
