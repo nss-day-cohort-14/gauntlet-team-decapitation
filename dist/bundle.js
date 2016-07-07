@@ -116,30 +116,55 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ProtectionSpell();
  		NewHero.name = inputName;
- 		buildEnemy ();
-		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
-		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
- 	})
+    buildEnemy ();
+    $('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+    $('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
+  })
  }
  buildProtectionSpell();
 
-function buildEnemy () {
-	var determineEnemy;
-	determineEnemy=Math.floor(Math.random() * (4) + 1);
-	console.log(determineEnemy);
-	if (determineEnemy === 2) {
-		NewEnemy = new EquipmentModule.PotionOfProtection();
-	} else if (determineEnemy === 1) {
-		NewEnemy = new EquipmentModule.CloakOfWisdom();
-	} else if (determineEnemy === 3) {
-		NewEnemy = new EquipmentModule.PlateArmor();
-	} else {
-		NewEnemy = new EquipmentModule.DoubleDagger();
-	}
-
+function addFightButton () {
+  $("#hiddenbtn").removeClass();
+  $("#hiddenbtn").click(function() {
+    fight();
+  })  
 }
 
+function buildEnemy () {
+  var determineEnemy;
+  determineEnemy=Math.floor(Math.random() * (4) + 1);
+  addFightButton();
+  if (determineEnemy === 2) {
+    NewEnemy = new EquipmentModule.PotionOfProtection();
+  } else if (determineEnemy === 1) {
+    NewEnemy = new EquipmentModule.CloakOfWisdom();
+  } else if (determineEnemy === 3) {
+    NewEnemy = new EquipmentModule.PlateArmor();
+  } else {
+    NewEnemy = new EquipmentModule.DoubleDagger();
+  }
+}
 
+function fight () {
+    // let enemyHealth = NewEnemy.health;
+    // let enemyAttack = NewEnemy.attack;     
+    // let heroHealth = NewHero.health;
+    // let heroAttack = NewHero.attack;
+    NewEnemy.health = NewEnemy.health - NewHero.attack;
+    if (NewEnemy.health < 1) {
+      console.log("Enemy is dead");
+      // insert end battle function here
+    } else {
+      NewHero.health = NewHero.health - NewEnemy.attack;
+      if (NewHero.health < 1) {
+        console.log("Hero is dead");
+        // insert end battle function here
+      } else { 
+        console.log("heroHealth", NewHero.health);
+        console.log("enemyHealth", NewEnemy.health);
+    } 
+  } 
+}
 
 
 
