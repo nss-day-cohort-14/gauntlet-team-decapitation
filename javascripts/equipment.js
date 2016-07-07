@@ -68,6 +68,7 @@ ProtectionSpell.prototype = new Equipment.Wizard();
 function DoubleDagger () {
   this.attack += Math.floor(Math.random() * (15 - 10) + 10);
   this.equipment = "Double Dagger";
+  this.name = "Orc Beserker";
 }
 // Place holder for event listner
 DoubleDagger.prototype = new Equipment.Beserker();
@@ -75,6 +76,7 @@ DoubleDagger.prototype = new Equipment.Beserker();
 function PlateArmor () {
   this.health += Math.floor(Math.random() * (10 - 5) + 5);
   this.equipment = "Plate Armor";
+  this.name = "Orc Beserker";
 }
 // Place holder for event listner
 PlateArmor.prototype = new Equipment.Beserker();
