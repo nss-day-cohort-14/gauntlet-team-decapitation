@@ -25,13 +25,16 @@ DomManip.archerEquipmentClick();
 DomManip.wizardEquipmentClick();
 
 var NewHero;
+var NewEnemy;
 
 function buildExtraWeapon () {
  	$('.extraWeaponBtn').click(function () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ExtraWeapon();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildExtraWeapon();
@@ -41,7 +44,9 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.Shield();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildShield();
@@ -51,7 +56,9 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.IceSpell();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildIceSpear();
@@ -61,7 +68,9 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ArmoredRobe();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildRobes();
@@ -71,7 +80,9 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.LongBow();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildLongBow();
@@ -81,7 +92,9 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.LeatherArmor();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildLeatherArmor();
@@ -91,7 +104,9 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.FireSpell();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildFireBall();
@@ -101,10 +116,32 @@ function buildShield () {
  		var inputName = $('#name').val();
  		NewHero = new EquipmentModule.ProtectionSpell();
  		NewHero.name = inputName;
+ 		buildEnemy ();
 		$('.outputEl').html(`<h1>${NewHero.name} Will kick your ass with ${NewHero.equipment} while having ${NewHero.attack} as attack and ${NewHero.health} as health</h1> `);
+		$('.outputElEnemy').html(`<h1>${NewEnemy.name} Will kick your ass with ${NewEnemy.equipment} while having ${NewEnemy.attack} as attack and ${NewEnemy.health} as health</h1> `);
  	})
  }
  buildProtectionSpell();
+
+function buildEnemy () {
+	var determineEnemy;
+	determineEnemy=Math.floor(Math.random() * (1-0) + 1);
+	if (determineEnemy === 2) {
+		NewEnemy = new EquipmentModule.PotionOfProtection();
+	} else {
+		NewEnemy = new EquipmentModule.CloakOfWisdom();
+	}
+
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -324,6 +361,7 @@ PlateArmor.prototype = new Equipment.Beserker();
 function PotionOfProtection () {
   this.health += Math.floor(Math.random() * (10 - 5) + 5);
   this.equipment = "Potion of Protection";
+  this.name = "Orc Shaman";
 }
 // Place holder for event listner
 PotionOfProtection.prototype = new Equipment.Shaman();
@@ -331,6 +369,7 @@ PotionOfProtection.prototype = new Equipment.Shaman();
 function CloakOfWisdom () {
   this.health += Math.floor(Math.random() * (10 - 5) + 5);
   this.equipment = "Cloak of Wisdom";
+  this.name = "Orc Shaman";
 }
 // Place holder for event listner
 CloakOfWisdom.prototype = new Equipment.Shaman();

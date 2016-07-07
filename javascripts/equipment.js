@@ -82,6 +82,7 @@ PlateArmor.prototype = new Equipment.Beserker();
 function PotionOfProtection () {
   this.health += Math.floor(Math.random() * (10 - 5) + 5);
   this.equipment = "Potion of Protection";
+  this.name = "Orc Shaman";
 }
 // Place holder for event listner
 PotionOfProtection.prototype = new Equipment.Shaman();
@@ -89,6 +90,7 @@ PotionOfProtection.prototype = new Equipment.Shaman();
 function CloakOfWisdom () {
   this.health += Math.floor(Math.random() * (10 - 5) + 5);
   this.equipment = "Cloak of Wisdom";
+  this.name = "Orc Shaman";
 }
 // Place holder for event listner
 CloakOfWisdom.prototype = new Equipment.Shaman();
