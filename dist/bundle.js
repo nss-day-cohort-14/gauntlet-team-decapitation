@@ -178,8 +178,10 @@ function fight () {
     heroCritRoll(NewHero);
     Templates.enemyTemplate(NewEnemy);
     if (NewEnemy.boss === true && NewEnemy.health <1) {
-      alert("You Won!");
-      location.reload();
+    	setTimeout(function(){$('.enemyPic').prop('src', `${NewEnemy.dead}`)}, 15);
+    	setTimeout(function(){
+      		alert("You Won!");
+      		location.reload();}, 1000);
     }
     else if (NewEnemy.health < 1) {
       setTimeout(function(){$('.enemyPic').prop('src', `${NewEnemy.dead}`)}, 15);
