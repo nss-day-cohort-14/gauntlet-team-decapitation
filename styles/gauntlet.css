@@ -15,7 +15,7 @@
 }
 
 .hidebtn {
-	display: none;
+	display: none !important;
 }
 
 .page-header {
@@ -54,6 +54,12 @@
 	background-color: firebrick;
 }
 
+.output {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
 .output h1, h2, h3 {
 	display: inline;
 }
@@ -64,8 +70,20 @@ img {
 	margin: auto;
 }
 
-.outputElEnemy{
+.outputElEnemy {
 	text-align: right;
+}
+
+.fightDiv {
+	align-items: center;
+	vertical-align: middle;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.fightBtn {
+	display: block;
+	margin: 0 auto;
 }
 
 
