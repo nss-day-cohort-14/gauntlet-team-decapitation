@@ -11,10 +11,26 @@
  	$('.raceBtn').prop('disabled', true);
  }
 
- function raceClick () {
- 	$('.raceBtn').click(function () {
- 		$('.classesBtn').removeAttr('disabled');
- 	});
+ // function raceClick () {
+ // 	$('.raceBtn').click(function () {
+ // 		$('.classesBtn').removeAttr('disabled');
+ // 	});
+ // }
+
+ function humanClick() {
+ 	$('.humanBtn').click(function() {
+ 		$('.classesBtn').prop('disabled', true)
+ 		$('.warriorBtn').removeAttr('disabled')
+ 		$('.mageBtn').removeAttr('disabled')
+ 	})
+ }
+
+ function elfClick() {
+ 	$('.elfBtn').click(function() {
+ 		$('.classesBtn').prop('disabled', true)
+ 		$('.archerBtn').removeAttr('disabled')
+ 		$('.wizardBtn').removeAttr('disabled')
+ 	})
  }
 
  function warriorEquipmentClick () {
@@ -49,7 +65,8 @@
 
 module.exports = {
 	disableBtns, 
-	raceClick, 
+	humanClick,
+	elfClick, 
 	warriorEquipmentClick, 
 	mageEquipmentClick, 
 	archerEquipmentClick, 

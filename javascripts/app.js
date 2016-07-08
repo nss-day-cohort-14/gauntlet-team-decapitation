@@ -17,7 +17,8 @@ $(document).ready(function(){
 }); 
 
 DomManip.disableBtns();
-DomManip.raceClick();
+DomManip.humanClick();
+DomManip.elfClick();
 DomManip.warriorEquipmentClick();
 DomManip.mageEquipmentClick();
 DomManip.archerEquipmentClick();
@@ -38,6 +39,7 @@ function buildExtraWeapon () {
  		buildEnemy ();
 		Templates.heroTemplate(NewHero);
 		Templates.enemyTemplate(NewEnemy);
+		console.log(NewHero.race);
  	})
  }
  buildExtraWeapon();
@@ -172,7 +174,7 @@ function buildEnemy () {
 
 
 function fight () {
-    NewEnemy.health = NewEnemy.health - NewHero.attack;
+	heroCritRoll();
     Templates.enemyTemplate(NewEnemy);
     if (NewEnemy.health < 1) {
       alert("Enemy is dead");
@@ -184,20 +186,44 @@ function fight () {
       buildEnemy();
       Templates.enemyTemplate(NewEnemy);
     } else {
-      NewHero.health = NewHero.health - NewEnemy.attack;
+      enemyCritRoll();
       Templates.heroTemplate(NewHero);
       if (NewHero.health < 1) {
         alert("Hero is Dead");
       } else { 
         console.log("heroHealth", NewHero.health);
         console.log("enemyHealth", NewEnemy.health);
+        console.log("end turn");
     } 
   } 
 }
 
 
+function heroCritRoll() {
+	let critRoll = Math.floor(Math.random() * (100) + 1)
+	if (critRoll >= 85) {
+		NewEnemy.health = NewEnemy.health - (NewHero.attack * 1.25);
+		console.log("Critical Hit on the enemy!");
+	} else if (critRoll <= 15) {
+		NewEnemy.health = NewEnemy.health;
+		console.log("The hero missed, you idiot!");
+	} else {
+		NewEnemy.health = NewEnemy.health - NewHero.attack;
+	}
+}
 
-
+function enemyCritRoll() {
+	let critRoll = Math.floor(Math.random() * (100) + 1)
+	if (critRoll >= 85) {
+	    NewHero.health = NewHero.health - (NewEnemy.attack * 1.25);
+		console.log("Critical Hit on the hero!");
+	} else if (critRoll <= 15) {
+	    NewHero.health = NewHero.health;
+		console.log("The enemy missed, you idiot!");
+	} else {
+	    NewHero.health = NewHero.health - NewEnemy.attack;
+	}
+}
 
 
 
