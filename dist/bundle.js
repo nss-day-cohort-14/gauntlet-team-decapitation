@@ -145,7 +145,7 @@ function buildShield () {
  buildProtectionSpell();
 
 function addFightButton () {
-  $("#hiddenbtn").removeClass();
+  $("#hiddenbtn").removeClass('hidebtn');
   $("#hiddenbtn").click(function() {
     fight();
   })  
@@ -156,6 +156,7 @@ function buildEnemy () {
   determineEnemy=Math.floor(Math.random() * (4) + 1);
 	if (counter === 3) {
 		NewEnemy = new ClassesModule.Ice();
+    console.log("boss");
 	}  
   	else if (determineEnemy === 2) {
     	NewEnemy = new EquipmentModule.PotionOfProtection();
@@ -170,57 +171,66 @@ function buildEnemy () {
     	NewEnemy = new EquipmentModule.DoubleDagger();
     	counter ++;
   }
-  console.log(counter);
 }
 
 
 function fight () {
-	heroCritRoll();
+    heroCritRoll(NewHero);
     Templates.enemyTemplate(NewEnemy);
-    if (NewEnemy.health < 1) {
-      alert("Enemy is dead");
-      alert("Next Wave");
-      NewHero.health = resetHealth;
-      Templates.heroTemplate(NewHero);
+    if (NewEnemy.boss === true && NewEnemy.health <1) {
+      alert("You Won!");
+      location.reload();
+    }
+    else if (NewEnemy.health < 1) {
+      setTimeout(function(){$('.enemyPic').prop('src', `${NewEnemy.dead}`)}, 15);
+      // setTimeout(function(){alert("Enemy is dead")}, 30);
+      setTimeout(function(){
+          buildEnemy(); 
+          NewHero.health = resetHealth;
+          Templates.heroTemplate(NewHero);
+          Templates.enemyTemplate(NewEnemy);
+          alert("Next Wave");}, 1000);
       console.log(NewHero.health);
       console.log(NewEnemy.name);
-      buildEnemy();
-      Templates.enemyTemplate(NewEnemy);
+      console.log(NewEnemy.boss);
+
     } else {
-      enemyCritRoll();
+      enemyCritRoll(NewEnemy);
       Templates.heroTemplate(NewHero);
       if (NewHero.health < 1) {
-        alert("Hero is Dead");
-      } else { 
-        console.log("heroHealth", NewHero.health);
-        console.log("enemyHealth", NewEnemy.health);
-        console.log("end turn");
+        $('.heroPic').prop('src', `${NewHero.dead}`);
+    //   } else { 
+    //     console.log("heroHealth", NewHero.health);
+    //     console.log("enemyHealth", NewEnemy.health);
+    //     console.log("end turn");
     } 
   } 
 }
 
 
-function heroCritRoll() {
+function heroCritRoll(hero) {
 	let critRoll = Math.floor(Math.random() * (100) + 1)
+  $('.actionLog').html("")
 	if (critRoll >= 85) {
 		NewEnemy.health = NewEnemy.health - (NewHero.attack * 1.25);
-		console.log("Critical Hit on the enemy!");
+		$('.actionLog').html(`<p><h1>Critical hit by ${hero.name}</h1></p>`)
 	} else if (critRoll <= 15) {
 		NewEnemy.health = NewEnemy.health;
-		console.log("The hero missed, you idiot!");
+		$('.actionLog').html(`<p><h1>${hero.name} just missed!</h1></p>`)
 	} else {
 		NewEnemy.health = NewEnemy.health - NewHero.attack;
 	}
 }
 
-function enemyCritRoll() {
+function enemyCritRoll(enemy) {
 	let critRoll = Math.floor(Math.random() * (100) + 1)
+   $('.actionLog').html("")
 	if (critRoll >= 85) {
 	    NewHero.health = NewHero.health - (NewEnemy.attack * 1.25);
-		console.log("Critical Hit on the hero!");
+    $('.actionLog').html(`<p><h1>Critical hit by ${enemy.name}</h1></p>`)
 	} else if (critRoll <= 15) {
 	    NewHero.health = NewHero.health;
-		console.log("The enemy missed, you idiot!");
+		$('.actionLog').html(`<p><h1>${enemy.name} just missed!</h1></p>`)
 	} else {
 	    NewHero.health = NewHero.health - NewEnemy.attack;
 	}
@@ -299,6 +309,8 @@ function Ice () {
 	this.attack += Math.floor(Math.random() * (40 - 15) + 15);
 	this.class = "Ice";
 	this.name = "Ice Dragon";
+	this.boss = true;
+	this.equipment = "Ice Breath";
 }
 // Place holder for event listner
 Ice.prototype = new Races.Dragon();
@@ -569,13 +581,11 @@ module.exports = {Human, Elf, Orc, Dragon};
 let $ = require("jquery")
 
 function heroTemplate (hero) {
-	// $('.outputEl').html(`<h3><span class="heroName">${hero.name}</span> Will kick your ass with a ${hero.equipment} while having <h1>${hero.attack}</h1><h3> as attack and </h3><h1>${hero.health}</h1><h3> as health</h3> `);
-	$('.outputEl').html(`<h2>${hero.name}</h2><img src="${hero.img}"><hr><h5>You are a ${hero.race} ${hero.class} equipped with ${hero.equipment}</h5><h5>Your attack: ${hero.attack}</h5><h5>Your Health: ${hero.health}</h5>`);
+    $('.outputEl').html(`<h2>${hero.name}</h2><img class="heroPic" src="${hero.img}"><hr><h5>You are a ${hero.race} ${hero.class} equipped with ${hero.equipment}</h5><h5>Your attack: ${hero.attack}</h5><h5>Your Health: ${hero.health}</h5>`);
 }
 
 function enemyTemplate (enemy) {
-	// $('.outputElEnemy').html(`<h3><span class="enemyName">${enemy.name}</span> Will kick your ass with a ${enemy.equipment} while having <h1>${enemy.attack}</h1><h3> as attack and </h3><h1>${enemy.health}</h1><h3> as health</h3> `);
-	$('.outputElEnemy').html(`<h2>${enemy.name}</h2><img src="${enemy.img}"><hr><h5>Your enemy is a ${enemy.race} ${enemy.class} equipped with ${enemy.equipment}</h5><h5>Their attack: ${enemy.attack}</h5><h5>Their Health: ${enemy.health}</h5>`);
+    $('.outputElEnemy').html(`<h2>${enemy.name}</h2><img class="enemyPic" src="${enemy.img}"><hr><h5>Your enemy is a ${enemy.race} ${enemy.class} equipped with ${enemy.equipment}</h5><h5>Their attack: ${enemy.attack}</h5><h5>Their Health: ${enemy.health}</h5>`);
 }
 
 module.exports = {heroTemplate, enemyTemplate};

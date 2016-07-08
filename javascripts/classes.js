@@ -65,6 +65,8 @@ function Ice () {
 	this.attack += Math.floor(Math.random() * (40 - 15) + 15);
 	this.class = "Ice";
 	this.name = "Ice Dragon";
+	this.boss = true;
+	this.equipment = "Ice Breath";
 }
 // Place holder for event listner
 Ice.prototype = new Races.Dragon();
