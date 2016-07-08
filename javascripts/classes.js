@@ -1,6 +1,6 @@
 "use strict";
 
-let Classes = require("./races");
+let Races = require("./races");
 
 
 function Warrior () {
@@ -9,7 +9,7 @@ function Warrior () {
 	this.class = "Warrior";
 }
 // Place holder for event listner
-Warrior.prototype = new Classes.Human();
+Warrior.prototype = new Races.Human();
 
 function Mage () {
 	this.health += Math.floor(Math.random() * (60 - 40) + 40);
@@ -17,7 +17,7 @@ function Mage () {
 	this.class = "Mage";
 }
 // Place holder for event listner
-Mage.prototype = new Classes.Human();
+Mage.prototype = new Races.Human();
 
 function Archer () {
 	this.health += Math.floor(Math.random() * (70 - 50) + 50);
@@ -25,7 +25,7 @@ function Archer () {
 	this.class = "Archer";
 }
 // Place holder for event listner
-Archer.prototype = new Classes.Human();
+Archer.prototype = new Races.Elf();
 
 function Wizard () {
 	this.health += Math.floor(Math.random() * (55 - 45) + 45);
@@ -33,7 +33,7 @@ function Wizard () {
 	this.class = "Wizard";
 }
 // Place holder for event listner
-Wizard.prototype = new Classes.Human();
+Wizard.prototype = new Races.Elf();
 
 function Beserker () {
 	this.health += Math.floor(Math.random() * (75 - 55) + 55);
@@ -41,7 +41,7 @@ function Beserker () {
 	this.class = "Beserker";
 }
 // Place holder for event listner
-Beserker.prototype = new Classes.Orc();
+Beserker.prototype = new Races.Orc();
 
 function Shaman () {
 	this.health += Math.floor(Math.random() * (70 - 50) + 50);
@@ -49,25 +49,25 @@ function Shaman () {
 	this.class = "Shaman";
 }
 // Place holder for event listner
-Shaman.prototype = new Classes.Orc();
+Shaman.prototype = new Races.Orc();
 
 function Fire () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
-	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
+	this.attack += Math.floor(Math.random() * (40 - 15) + 15);
 	this.class = "Fire";
 	this.name = "Fire Dragon";
 }
 // Place holder for event listner
-Fire.prototype = new Classes.Dragon();
+Fire.prototype = new Races.Dragon();
 
 function Ice () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
-	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
+	this.attack += Math.floor(Math.random() * (40 - 15) + 15);
 	this.class = "Ice";
 	this.name = "Ice Dragon";
 }
 // Place holder for event listner
-Ice.prototype = new Classes.Dragon();
+Ice.prototype = new Races.Dragon();
 
 
 module.exports = {Warrior, Mage, Archer, Wizard, Beserker, Shaman, Fire, Ice};

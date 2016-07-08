@@ -20,7 +20,7 @@
 			<form role="form">
 			    <div class="form-group">
 			      <label for="usr">Name:</label>
-			      <input type="text" class="form-control" id="name">
+			      <input type="text" class="form-control" id="name" autofocus>
 			    </div>
 			</form>
 		</div>
@@ -73,12 +73,13 @@
 	</div>
 	<div class="container">
 		<div class="row output">
-			<div class="outputEl">
+			<div class="outputEl col-xs-6 col-md-4">
 			</div>
-			<hr>
-			<div class="outputElEnemy">
+			<div class="col-xs-6 col-md-4">
+				<button type="button" id="hiddenbtn" class="hidebtn">FIGHT!</button>
 			</div>
-			<button type="button" id="hiddenbtn" class="hidebtn">FIGHT!</button>
+			<div class="outputElEnemy col-xs-6 col-md-4">
+			</div>
 			<div class="fightResults">
 			</div>
 		</div>

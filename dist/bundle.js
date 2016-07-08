@@ -18,7 +18,8 @@ $(document).ready(function(){
 }); 
 
 DomManip.disableBtns();
-DomManip.raceClick();
+DomManip.humanClick();
+DomManip.elfClick();
 DomManip.warriorEquipmentClick();
 DomManip.mageEquipmentClick();
 DomManip.archerEquipmentClick();
@@ -39,6 +40,7 @@ function buildExtraWeapon () {
  		buildEnemy ();
 		Templates.heroTemplate(NewHero);
 		Templates.enemyTemplate(NewEnemy);
+		console.log(NewHero.race);
  	})
  }
  buildExtraWeapon();
@@ -173,7 +175,7 @@ function buildEnemy () {
 
 
 function fight () {
-    NewEnemy.health = NewEnemy.health - NewHero.attack;
+	heroCritRoll();
     Templates.enemyTemplate(NewEnemy);
     if (NewEnemy.health < 1) {
       alert("Enemy is dead");
@@ -185,20 +187,44 @@ function fight () {
       buildEnemy();
       Templates.enemyTemplate(NewEnemy);
     } else {
-      NewHero.health = NewHero.health - NewEnemy.attack;
+      enemyCritRoll();
       Templates.heroTemplate(NewHero);
       if (NewHero.health < 1) {
         alert("Hero is Dead");
       } else { 
         console.log("heroHealth", NewHero.health);
         console.log("enemyHealth", NewEnemy.health);
+        console.log("end turn");
     } 
   } 
 }
 
 
+function heroCritRoll() {
+	let critRoll = Math.floor(Math.random() * (100) + 1)
+	if (critRoll >= 85) {
+		NewEnemy.health = NewEnemy.health - (NewHero.attack * 1.25);
+		console.log("Critical Hit on the enemy!");
+	} else if (critRoll <= 15) {
+		NewEnemy.health = NewEnemy.health;
+		console.log("The hero missed, you idiot!");
+	} else {
+		NewEnemy.health = NewEnemy.health - NewHero.attack;
+	}
+}
 
-
+function enemyCritRoll() {
+	let critRoll = Math.floor(Math.random() * (100) + 1)
+	if (critRoll >= 85) {
+	    NewHero.health = NewHero.health - (NewEnemy.attack * 1.25);
+		console.log("Critical Hit on the hero!");
+	} else if (critRoll <= 15) {
+	    NewHero.health = NewHero.health;
+		console.log("The enemy missed, you idiot!");
+	} else {
+	    NewHero.health = NewHero.health - NewEnemy.attack;
+	}
+}
 
 
 
@@ -208,7 +234,7 @@ function fight () {
 },{"./classes":2,"./domManip":3,"./equipment":4,"./player":5,"./races":6,"./template":7,"jquery":8}],2:[function(require,module,exports){
 "use strict";
 
-let Classes = require("./races");
+let Races = require("./races");
 
 
 function Warrior () {
@@ -217,7 +243,7 @@ function Warrior () {
 	this.class = "Warrior";
 }
 // Place holder for event listner
-Warrior.prototype = new Classes.Human();
+Warrior.prototype = new Races.Human();
 
 function Mage () {
 	this.health += Math.floor(Math.random() * (60 - 40) + 40);
@@ -225,7 +251,7 @@ function Mage () {
 	this.class = "Mage";
 }
 // Place holder for event listner
-Mage.prototype = new Classes.Human();
+Mage.prototype = new Races.Human();
 
 function Archer () {
 	this.health += Math.floor(Math.random() * (70 - 50) + 50);
@@ -233,7 +259,7 @@ function Archer () {
 	this.class = "Archer";
 }
 // Place holder for event listner
-Archer.prototype = new Classes.Human();
+Archer.prototype = new Races.Elf();
 
 function Wizard () {
 	this.health += Math.floor(Math.random() * (55 - 45) + 45);
@@ -241,7 +267,7 @@ function Wizard () {
 	this.class = "Wizard";
 }
 // Place holder for event listner
-Wizard.prototype = new Classes.Human();
+Wizard.prototype = new Races.Elf();
 
 function Beserker () {
 	this.health += Math.floor(Math.random() * (75 - 55) + 55);
@@ -249,7 +275,7 @@ function Beserker () {
 	this.class = "Beserker";
 }
 // Place holder for event listner
-Beserker.prototype = new Classes.Orc();
+Beserker.prototype = new Races.Orc();
 
 function Shaman () {
 	this.health += Math.floor(Math.random() * (70 - 50) + 50);
@@ -257,25 +283,25 @@ function Shaman () {
 	this.class = "Shaman";
 }
 // Place holder for event listner
-Shaman.prototype = new Classes.Orc();
+Shaman.prototype = new Races.Orc();
 
 function Fire () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
-	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
+	this.attack += Math.floor(Math.random() * (40 - 15) + 15);
 	this.class = "Fire";
 	this.name = "Fire Dragon";
 }
 // Place holder for event listner
-Fire.prototype = new Classes.Dragon();
+Fire.prototype = new Races.Dragon();
 
 function Ice () {
 	this.health += Math.floor(Math.random() * (100 - 75) + 75);
-	this.attack += Math.floor(Math.random() * (40 - 5) + 5);
+	this.attack += Math.floor(Math.random() * (40 - 15) + 15);
 	this.class = "Ice";
 	this.name = "Ice Dragon";
 }
 // Place holder for event listner
-Ice.prototype = new Classes.Dragon();
+Ice.prototype = new Races.Dragon();
 
 
 module.exports = {Warrior, Mage, Archer, Wizard, Beserker, Shaman, Fire, Ice};
@@ -293,10 +319,26 @@ module.exports = {Warrior, Mage, Archer, Wizard, Beserker, Shaman, Fire, Ice};
  	$('.raceBtn').prop('disabled', true);
  }
 
- function raceClick () {
- 	$('.raceBtn').click(function () {
- 		$('.classesBtn').removeAttr('disabled');
- 	});
+ // function raceClick () {
+ // 	$('.raceBtn').click(function () {
+ // 		$('.classesBtn').removeAttr('disabled');
+ // 	});
+ // }
+
+ function humanClick() {
+ 	$('.humanBtn').click(function() {
+ 		$('.classesBtn').prop('disabled', true)
+ 		$('.warriorBtn').removeAttr('disabled')
+ 		$('.mageBtn').removeAttr('disabled')
+ 	})
+ }
+
+ function elfClick() {
+ 	$('.elfBtn').click(function() {
+ 		$('.classesBtn').prop('disabled', true)
+ 		$('.archerBtn').removeAttr('disabled')
+ 		$('.wizardBtn').removeAttr('disabled')
+ 	})
  }
 
  function warriorEquipmentClick () {
@@ -331,7 +373,8 @@ module.exports = {Warrior, Mage, Archer, Wizard, Beserker, Shaman, Fire, Ice};
 
 module.exports = {
 	disableBtns, 
-	raceClick, 
+	humanClick,
+	elfClick, 
 	warriorEquipmentClick, 
 	mageEquipmentClick, 
 	archerEquipmentClick, 
@@ -488,6 +531,8 @@ let Races = require("./player");
 function Human() {
 	this.race = "Human";
 	this.health = 15;
+	this.img = "img/human.jpg";
+	this.dead = "img/humanDecap.jpg";
 }
 
 Human.prototype = new Races.Hero();
@@ -495,18 +540,24 @@ Human.prototype = new Races.Hero();
 function Elf() {
 	this.race = "Elf";
 	this.attack = 10;
+	this.img = "img/elf.jpg";
+	this.dead = "img/elfDecap.jpg";
 }
 
 Elf.prototype = new Races.Hero();
 
 function Orc() {
 	this.race = "Orc";
+	this.img = "img/orc.jpg";
+	this.dead = "img/orcDecap.jpg";
 }
 
 Orc.prototype = new Races.Enemy();
 
 function Dragon() {
 	this.race = "Dragon";
+	this.img = "img/dragon.jpg";
+	this.dead = "img/dragonDecap.jpg";
 }
 
 Dragon.prototype = new Races.Enemy();
@@ -518,11 +569,13 @@ module.exports = {Human, Elf, Orc, Dragon};
 let $ = require("jquery")
 
 function heroTemplate (hero) {
-	$('.outputEl').html(`<h3><span class="heroName">${hero.name}</span> Will kick your ass with a ${hero.equipment} while having <h1>${hero.attack}</h1><h3> as attack and </h3><h1>${hero.health}</h1><h3> as health</h3> `);
+	// $('.outputEl').html(`<h3><span class="heroName">${hero.name}</span> Will kick your ass with a ${hero.equipment} while having <h1>${hero.attack}</h1><h3> as attack and </h3><h1>${hero.health}</h1><h3> as health</h3> `);
+	$('.outputEl').html(`<h2>${hero.name}</h2><img src="${hero.img}"><hr><h5>You are a ${hero.race} ${hero.class} equipped with ${hero.equipment}</h5><h5>Your attack: ${hero.attack}</h5><h5>Your Health: ${hero.health}</h5>`);
 }
 
 function enemyTemplate (enemy) {
-	$('.outputElEnemy').html(`<h3><span class="enemyName">${enemy.name}</span> Will kick your ass with a ${enemy.equipment} while having <h1>${enemy.attack}</h1><h3> as attack and </h3><h1>${enemy.health}</h1><h3> as health</h3> `);
+	// $('.outputElEnemy').html(`<h3><span class="enemyName">${enemy.name}</span> Will kick your ass with a ${enemy.equipment} while having <h1>${enemy.attack}</h1><h3> as attack and </h3><h1>${enemy.health}</h1><h3> as health</h3> `);
+	$('.outputElEnemy').html(`<h2>${enemy.name}</h2><img src="${enemy.img}"><hr><h5>Your enemy is a ${enemy.race} ${enemy.class} equipped with ${enemy.equipment}</h5><h5>Their attack: ${enemy.attack}</h5><h5>Their Health: ${enemy.health}</h5>`);
 }
 
 module.exports = {heroTemplate, enemyTemplate};

@@ -58,9 +58,15 @@
 	display: inline;
 }
 
+img {
+	height: 200px;
+	display: block;
+	margin: auto;
+}
 
-
-
+.outputElEnemy{
+	text-align: right;
+}
 
 
 
