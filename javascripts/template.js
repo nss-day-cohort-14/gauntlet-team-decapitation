@@ -10,4 +10,18 @@ function enemyTemplate (enemy) {
     $('.outputElEnemy').html(`<h2>${enemy.name}</h2><img class="enemyPic" src="${enemy.img}"><hr><h5>Your enemy is a ${enemy.race} ${enemy.class} equipped with ${enemy.equipment}</h5><h5>Their attack: ${enemy.attack}</h5><h5>Their Health: ${enemy.health}</h5>`);
 }
 
-module.exports = {heroTemplate, enemyTemplate};
+function displayHeroAttack (hero) {
+	$('.heroAttack').css("opacity", "100");
+	$('.heroAttack').html(`<span class='attack'><h2>${hero.attack}</h2></span>`).animate({
+		opacity: 0
+	}, 1000, function(){});
+}
+
+function displayEnemyAttack (enemy) {
+	$('.enemyAttack').css("opacity", "100");
+	$('.enemyAttack').html(`<span class='attack'><h2>${enemy.attack}</h2></span>`).animate({
+		opacity: 0
+	}, 1000, function(){})
+}
+
+module.exports = {heroTemplate, enemyTemplate, displayHeroAttack, displayEnemyAttack};
