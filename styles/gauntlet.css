@@ -86,5 +86,10 @@ img {
 	margin: 0 auto;
 }
 
+.heroAttack,
+.enemyAttack {
+	color: red;
+}
+
 
 

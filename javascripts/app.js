@@ -207,7 +207,7 @@ function fight () {
         Templates.heroTemplate(NewHero);
         $('.heroPic').prop('src', `${NewHero.dead}`);
         setTimeout(function(){
-          alert("You Won!");
+          alert("You LOST!");
           location.reload();}, 1000);
           } 
         } 
@@ -219,13 +219,15 @@ function heroCritRoll(hero) {
 	let critRoll = Math.floor(Math.random() * (100) + 1)
   $('.actionLog').html("")
 	if (critRoll >= 85) {
-		NewEnemy.health = NewEnemy.health - (NewHero.attack * 1.25);
-		$('.actionLog').html(`<p><h1>Critical hit by ${hero.name}</h1></p>`)
+    NewEnemy.health = NewEnemy.health - (NewHero.attack * 1.25);
+    Templates.displayHeroAttack(NewHero);
+    $('.actionLog').html(`<p><h1>Critical hit by ${hero.name}</h1></p>`)
 	} else if (critRoll <= 15) {
-		NewEnemy.health = NewEnemy.health;
-		$('.actionLog').html(`<p><h1>${hero.name} just missed!</h1></p>`)
+    Templates.displayHeroAttack(NewHero);
+    $('.actionLog').html(`<p><h1>${hero.name} just missed!</h1></p>`)
 	} else {
 		NewEnemy.health = NewEnemy.health - NewHero.attack;
+    Templates.displayHeroAttack(NewHero);
 	}
 }
 
@@ -233,13 +235,17 @@ function enemyCritRoll(enemy) {
 	let critRoll = Math.floor(Math.random() * (100) + 1)
    $('.actionLog').html("")
 	if (critRoll >= 85) {
-	    NewHero.health = NewHero.health - (NewEnemy.attack * 1.25);
+    NewHero.health = NewHero.health - (NewEnemy.attack * 1.25);
+    setTimeout(function(){
+    Templates.displayEnemyAttack(NewEnemy)}, 1000);
     $('.actionLog').html(`<p><h1>Critical hit by ${enemy.name}</h1></p>`)
 	} else if (critRoll <= 15) {
-	    NewHero.health = NewHero.health;
-		$('.actionLog').html(`<p><h1>${enemy.name} just missed!</h1></p>`)
+      NewHero.health = NewHero.health;
+    $('.actionLog').html(`<p><h1>${enemy.name} just missed!</h1></p>`)
 	} else {
 	    NewHero.health = NewHero.health - NewEnemy.attack;
+    setTimeout(function(){
+      Templates.displayEnemyAttack(NewEnemy)}, 1000);
 	}
 }
 

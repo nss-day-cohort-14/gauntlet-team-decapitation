@@ -208,7 +208,7 @@ function fight () {
         Templates.heroTemplate(NewHero);
         $('.heroPic').prop('src', `${NewHero.dead}`);
         setTimeout(function(){
-          alert("You Won!");
+          alert("You LOST!");
           location.reload();}, 1000);
           } 
         } 
@@ -220,13 +220,15 @@ function heroCritRoll(hero) {
 	let critRoll = Math.floor(Math.random() * (100) + 1)
   $('.actionLog').html("")
 	if (critRoll >= 85) {
-		NewEnemy.health = NewEnemy.health - (NewHero.attack * 1.25);
-		$('.actionLog').html(`<p><h1>Critical hit by ${hero.name}</h1></p>`)
+    NewEnemy.health = NewEnemy.health - (NewHero.attack * 1.25);
+    Templates.displayHeroAttack(NewHero);
+    $('.actionLog').html(`<p><h1>Critical hit by ${hero.name}</h1></p>`)
 	} else if (critRoll <= 15) {
-		NewEnemy.health = NewEnemy.health;
-		$('.actionLog').html(`<p><h1>${hero.name} just missed!</h1></p>`)
+    Templates.displayHeroAttack(NewHero);
+    $('.actionLog').html(`<p><h1>${hero.name} just missed!</h1></p>`)
 	} else {
 		NewEnemy.health = NewEnemy.health - NewHero.attack;
+    Templates.displayHeroAttack(NewHero);
 	}
 }
 
@@ -234,13 +236,17 @@ function enemyCritRoll(enemy) {
 	let critRoll = Math.floor(Math.random() * (100) + 1)
    $('.actionLog').html("")
 	if (critRoll >= 85) {
-	    NewHero.health = NewHero.health - (NewEnemy.attack * 1.25);
+    NewHero.health = NewHero.health - (NewEnemy.attack * 1.25);
+    setTimeout(function(){
+    Templates.displayEnemyAttack(NewEnemy)}, 1000);
     $('.actionLog').html(`<p><h1>Critical hit by ${enemy.name}</h1></p>`)
 	} else if (critRoll <= 15) {
-	    NewHero.health = NewHero.health;
-		$('.actionLog').html(`<p><h1>${enemy.name} just missed!</h1></p>`)
+      NewHero.health = NewHero.health;
+    $('.actionLog').html(`<p><h1>${enemy.name} just missed!</h1></p>`)
 	} else {
 	    NewHero.health = NewHero.health - NewEnemy.attack;
+    setTimeout(function(){
+      Templates.displayEnemyAttack(NewEnemy)}, 1000);
 	}
 }
 
@@ -596,7 +602,21 @@ function enemyTemplate (enemy) {
     $('.outputElEnemy').html(`<h2>${enemy.name}</h2><img class="enemyPic" src="${enemy.img}"><hr><h5>Your enemy is a ${enemy.race} ${enemy.class} equipped with ${enemy.equipment}</h5><h5>Their attack: ${enemy.attack}</h5><h5>Their Health: ${enemy.health}</h5>`);
 }
 
-module.exports = {heroTemplate, enemyTemplate};
+function displayHeroAttack (hero) {
+	$('.heroAttack').css("opacity", "100");
+	$('.heroAttack').html(`<span class='attack'><h2>${hero.attack}</h2></span>`).animate({
+		opacity: 0
+	}, 1000, function(){});
+}
+
+function displayEnemyAttack (enemy) {
+	$('.enemyAttack').css("opacity", "100");
+	$('.enemyAttack').html(`<span class='attack'><h2>${enemy.attack}</h2></span>`).animate({
+		opacity: 0
+	}, 1000, function(){})
+}
+
+module.exports = {heroTemplate, enemyTemplate, displayHeroAttack, displayEnemyAttack};
 },{"jquery":8}],8:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.2.4
