@@ -187,11 +187,11 @@ function fight () {
       setTimeout(function(){$('.enemyPic').prop('src', `${NewEnemy.dead}`)}, 15);
       // setTimeout(function(){alert("Enemy is dead")}, 30);
       setTimeout(function(){
+      	  alert("Next Wave");
           buildEnemy(); 
           NewHero.health = resetHealth;
           Templates.heroTemplate(NewHero);
-          Templates.enemyTemplate(NewEnemy);
-          alert("Next Wave");}, 1000);
+          Templates.enemyTemplate(NewEnemy);}, 1000);
       console.log(NewHero.health);
       console.log(NewEnemy.name);
       console.log(NewEnemy.boss);
