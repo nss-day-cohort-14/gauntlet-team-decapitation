@@ -177,14 +177,18 @@ function fight () {
     heroCritRoll(NewHero);
     Templates.enemyTemplate(NewEnemy);
     if (NewEnemy.boss === true && NewEnemy.health <1) {
+      NewEnemy.health = 0;
+      Templates.enemyTemplate(NewEnemy);
     	setTimeout(function(){$('.enemyPic').prop('src', `${NewEnemy.dead}`)}, 15);
     	setTimeout(function(){
       		alert("You Won!");
       		location.reload();}, 1000);
     }
     else if (NewEnemy.health < 1) {
+      NewEnemy.health = 0;
+      Templates.enemyTemplate(NewEnemy)
+      console.log(NewEnemy.health)
       setTimeout(function(){$('.enemyPic').prop('src', `${NewEnemy.dead}`)}, 15);
-      // setTimeout(function(){alert("Enemy is dead")}, 30);
       setTimeout(function(){
       	  alert("Next Wave");
           buildEnemy(); 
@@ -199,14 +203,16 @@ function fight () {
       enemyCritRoll(NewEnemy);
       Templates.heroTemplate(NewHero);
       if (NewHero.health < 1) {
+        NewHero.health = 0;
+        Templates.heroTemplate(NewHero);
         $('.heroPic').prop('src', `${NewHero.dead}`);
-    //   } else { 
-    //     console.log("heroHealth", NewHero.health);
-    //     console.log("enemyHealth", NewEnemy.health);
-    //     console.log("end turn");
-    } 
-  } 
-}
+        setTimeout(function(){
+          alert("You Won!");
+          location.reload();}, 1000);
+          } 
+        } 
+    }
+
 
 
 function heroCritRoll(hero) {
